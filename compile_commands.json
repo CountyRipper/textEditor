@@ -1,0 +1,7 @@
+[
+{
+  "directory": "D:/DS_texteditor",
+  "command": "C:\\ProgramData\\chocolatey\\lib\\mingw\\tools\\install\\mingw64\\bin\\g++.exe    -g   -o CMakeFiles\\main.dir\\main.cpp.obj -c D:\\DS_texteditor\\main.cpp",
+  "file": "D:/DS_texteditor/main.cpp"
+}
+]
