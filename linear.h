@@ -6,8 +6,9 @@ struct Node
 {
     Type data;
     Node<Type>* prev;//指向前一个结点的指针
-    NOde<Type>* next;//指向下一个结点的指针
-
+    Node<Type>* next;//指向下一个结点的指针
+    Node(){}
+    Node(Type Elem,Node<Type>* p1=nullptr,Node<Type>*n1=nullptr):data(Elem),prev(p1),next(n1){}
 };
 
 template<class Type>

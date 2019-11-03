@@ -57,3 +57,31 @@ Type lineEditor<Type>::GetPositionElem(int position=1){
     }
     else return nullptr;
 }
+
+template<class Type>
+int lineEditor<Type>::InsertElem(const Type &Elem,int position){
+    if(IsEmpty()) return 0;
+    if(position<=0||position>Length()) return 0;
+    if(position>0&&position<=Length()){
+        Node<Type>*cur=GetPositionPtr(position);
+        //如果后面没元素了
+        if(cur->next==nullptr){
+            Node(Elem,cur->next,nullptr);
+        }
+        else{
+            Node<Type>*past=GetPositionPtr(position+1);
+            Node(Elem,cur->next,past->prev);
+        }
+    }
+}
+
+template<class Type>
+int lineEditor<Type>::DeletElem(int position=1){
+    if(IsEmpty()) return 0;
+    if(position<=0||position>Length()) return 0;
+    if(postion>0&&position<=Length()){
+        Node<Type>*cur=GetPositionPtr(position-1);
+        Node<Type>*tmp=
+    }
+
+}
