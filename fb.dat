@@ -8,11 +8,11 @@ void editor::ChangeLine(){
     do{
         if(initialResponse){
             //初始回答
-            cout<<"替换当前行(c) 或者 替换所有行(a):";
+            cout<<"change current line (c) or repalce all lines (a):";
         }
         else{
             //非初始回答
-            cout<<"请输入 c or a:";
+            cout<<"please input c or a:";
         }
 
         cin>>answer;
@@ -22,10 +22,10 @@ void editor::ChangeLine(){
         }//大写转换
         initialResponse=false;
     }while(answer!='c'&&answer!='a');
-    cout<<"请输入要被替换的字符串:";
+    cout<<"please input the replacede string:";
     string strOld;
     getline(cin,strOld);//输入要替换的字符串
-    cout<<"请输入新字符串:";
+    cout<<"please input new string:";
     string strNew;
     getline(cin,strNew);
 
@@ -56,11 +56,11 @@ void editor::FindString(){
     do{
         if(initialresponse){
             //初始回答
-            cout<<"从第一行开始(first) or 从当前行开始(current):";
+            cout<<"findString begin in f(first) or c(current):";
         }
         else{
             //非初始回答
-            cout<<"请输入 f or c :";
+            cout<<"please input f or c :";
         }
         cin>>answer;
         while(cin.get()!='\n');//忽略后面多余的字符
@@ -71,7 +71,7 @@ void editor::FindString(){
     }while(answer!='f'&&answer!='c');
     if(answer=='f') curLineNo=1;//输入f时从第一行开始
     bool flag=false;//用于标记是否查找到指定串
-    cout<<"请输入需要查找的字符串:";
+    cout<<"please input the findString:";
     string strSearch;
     getline(cin,strSearch);//获取搜索的字符串
     string strRow=textBuffer.GetPostionElem(curLineNo);
@@ -97,7 +97,7 @@ void editor::FindString(){
     }
     else{
         //查找失败
-        cout<<"查询失败!";
+        cout<<"sreach failed!";
     }
     cout<<endl;
 } 
@@ -114,54 +114,7 @@ void editor::Run(){
         }
         else{
             //不存在当前行
-            cout<<"文件缓存空!"<<endl<<"?";
-        }
-        cin>>command;
-        if(command>='A'&&command<='Z'){
-            command+=32;
-        }//大写转换
-        while(cin.get()!='\n');//忽略其他字符
-        if(command!='u'&&command!='h'&&command!='?'&&command!='v'){
-            //存储撤销信息
-            textUndoBuffer=textBuffer;//撤销的缓存(整体)
-            curUndoLineNo=curLineNo;//撤销的行号
-        }
-        //运行操作命令
-        switch(command){
-            case 'b'://转到第一行b(begin)
-                if(textBuffer.Isempty()){
-                    //文本缓存空
-                    cout<<"警告：文本缓存空！"<<endl;
-                }
-                else{
-                    //非空转到第一行
-                    curLine=1;
-                }
-                break;
-
-            case 'c'://替换当前行或者所有行
-                if(textBuffer.Isempty()){
-                    cout<<"警告：文本缓存空！"<<endl;
-                }
-                else{
-                    //替换
-                    ChangeLine();
-                }
-                break;
-            
-            case 'd'://删除当前行(delete)
-                if(textBuffer.DeleteElem(curLineNo,strTmp)==0){
-                    cout<<"删除失败！"<<endl;
-                }
-                break;
-            
-            case 'e'://转到最后一行e(end)
-                if(textBuffer.Isempty()){
-                    cout<<"警告：文本缓存空！"<<endl;
-                }
-                else{
-                    
-                }
+            cout<<"The filebuffer is empty!"<<endl<<"?";
         }
     }
 

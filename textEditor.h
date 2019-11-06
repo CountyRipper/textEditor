@@ -30,4 +30,5 @@ public:
     void Run();//运行文本编辑器
 };
 
+
 #endif

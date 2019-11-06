@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: D:/DS_texteditor
-BuildDirectory: D:/DS_texteditor
+SourceDirectory: G:/DS_texteditor
+BuildDirectory: G:/DS_texteditor
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: LAPTOP-L8QHV9PQ
+Site: DAI
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Win32-mingw32-make
@@ -26,8 +26,8 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "D:/DS_texteditor"
-MakeCommand: C:/Program\ Files/CMake/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
+ConfigureCommand: "E:/SOFTWARES/CMake/bin/cmake.exe" "G:/DS_texteditor"
+MakeCommand: E:/SOFTWARES/CMake/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -44,7 +44,7 @@ SVNOptions:
 SVNUpdateOptions: 
 
 # Git options
-GITCommand: D:/Softwares/Git/cmd/git.exe
+GITCommand: E:/SOFTWARES/Git/cmd/git.exe
 GITInitSubmodules: 
 GITUpdateOptions: 
 GITUpdateCustom: 
@@ -57,7 +57,7 @@ P4UpdateOptions:
 P4UpdateCustom: 
 
 # Generic update command
-UpdateCommand: D:/Softwares/Git/cmd/git.exe
+UpdateCommand: E:/SOFTWARES/Git/cmd/git.exe
 UpdateOptions: 
 UpdateType: git
 

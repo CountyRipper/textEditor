@@ -17,11 +17,11 @@ set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/bin/ar.exe")
+set(CMAKE_AR "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/ar.exe")
 set(CMAKE_C_COMPILER_AR "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/gcc-ar.exe")
-set(CMAKE_RANLIB "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/bin/ranlib.exe")
+set(CMAKE_RANLIB "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/ranlib.exe")
 set(CMAKE_C_COMPILER_RANLIB "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/gcc-ranlib.exe")
-set(CMAKE_LINKER "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/bin/ld.exe")
+set(CMAKE_LINKER "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/ld.exe")
 set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCC 1)
 set(CMAKE_C_COMPILER_LOADED 1)
