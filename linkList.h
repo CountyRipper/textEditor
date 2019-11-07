@@ -3,6 +3,7 @@
 #define _LINKLIST_H_
 #include <stddef.h>
 
+
 template<class Type>
 struct Node
 {
@@ -47,6 +48,7 @@ class linklist{
                     curPtr->back;
                 }
             }
+            curposition=position;
             //position=curposition
             return curPtr;
         }
@@ -63,10 +65,19 @@ class linklist{
         int DeleteElem();//直接删除队尾元素
         int SetElem(int position,const Type &Elem);//设置指定位置元素
         linklist(linklist<Type>&copy);//复制构造函数模板
-        linklist<Type> &operator =(const linklist<Type>&copy)//重载=
-        {
-            head=copy.head;
-        }        
+        linklist<Type>& operator =(linklist<Type>&copy){
+            linklist<Type> tmplist1;
+            tmplist1.count=copy.count;
+            for(int i=1;i<=tmplist1.count;i++){
+                tmplist1.InsertElem(copy.GetPostionElem(i),i++);
+            }
+            tmplist1.curposition=copy.curposition;
+            for(int i=1;i<=tmplist1.curposition;i++){
+                tmplist1.curPtr=tmplist1.curPtr->next;
+            }
+            return tmplist1;
+        }            
+         //重载=
 };
 
 #endif

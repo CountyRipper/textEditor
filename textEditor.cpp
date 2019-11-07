@@ -2,138 +2,139 @@
 
 template<class Type>
 void show(const Type &elem){
-    cout<<elem;
+    cout<<elem<<endl;
 }
 
-//ÇÐ»»µ½ÏÂÒ»ÐÐ
+//åˆ‡æ¢åˆ°ä¸‹ä¸€è¡Œ
 int editor::NextLine(){
     if(textBuffer.Isempty()){
-        cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ"<<endl;
+        cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©º"<<endl;
         return 0;
     }
     if(curLineNo<textBuffer.Length()){
         curLineNo++;
-        cout<<"µ±Ç°ÔÚµÚ"<<curLineNo<<"ÐÐ"<<endl;
+        cout<<"å½“å‰åœ¨ç¬¬"<<curLineNo<<"è¡Œ"<<endl;
         return 1;
     }
     else return 0;
 }
-//×ªµ½Ç°Ò»ÐÐ
+//è½¬åˆ°å‰ä¸€è¡Œ
 int editor::PreviousLine(){
     if(textBuffer.Isempty()){
-        cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ"<<endl;
+        cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©º"<<endl;
         return 0;
     }
     if(curLineNo>1){
         curLineNo--;
-        cout<<"µ±Ç°ÔÚµÚ"<<curLineNo<<"ÐÐ"<<endl;
+        cout<<"å½“å‰åœ¨ç¬¬"<<curLineNo<<"è¡Œ"<<endl;
         return 1;
     }
     else return 0;
 }
-//×ªµ½Ö¸¶¨ÐÐ
+//è½¬åˆ°æŒ‡å®šè¡Œ
 int editor::GotoLine(){
     int gotonum;
     if(textBuffer.Isempty()) return 0;
-    cout<<"ÇëÊäÈëÐèÒªÌø×ªµÄÐÐÊý"<<endl;
+    cout<<"è¯·è¾“å…¥éœ€è¦è·³è½¬çš„è¡Œæ•°"<<endl;
     cin>>gotonum;
     if(gotonum>0&&gotonum<=textBuffer.Length()){
         curLineNo=gotonum;
-        cout<<"µ±Ç°ÔÚµÚ"<<curLineNo<<"ÐÐ"<<endl;
+        cout<<"å½“å‰åœ¨ç¬¬"<<curLineNo<<"è¡Œ"<<endl;
         return 1;
     }
     else return 0;
     
 }
-//²åÈëÒ»ÐÐ
+//æ’å…¥ä¸€è¡Œ
 int editor::InsertLine(){
-    cout<<"µ±Ç°¹²ÓÐ"<<textBuffer.Length()<<"ÐÐ"<<endl;
-    cout<<"ÇëÊäÈë²åÈëµ½µÚ¼¸ÐÐºóÃæ:"<<endl;
+    cout<<"å½“å‰å…±æœ‰"<<textBuffer.Length()<<"è¡Œ"<<endl;
+    cout<<"è¯·è¾“å…¥æ’å…¥åˆ°ç¬¬å‡ è¡ŒåŽé¢:"<<endl;
     int row;
     cin>>row;
     if(row>=0&&row<=textBuffer.Length()){
-        cout<<"ÇëÊäÈë²åÈëÐÐµÄ×Ö·û´®:"<<endl;
+        cout<<"è¯·è¾“å…¥æ’å…¥è¡Œçš„å­—ç¬¦ä¸²:"<<endl;
         string instr;
         getline(cin,instr);
         textBuffer.InsertElem(instr,row+1);
         curLineNo=row+1;
-        cout<<"²åÈë³É¹¦"<<"µ±Ç°ÔÚµÚ"<<curLineNo<<"ÐÐ"<<endl;
+        cout<<"æ’å…¥æˆåŠŸ"<<"å½“å‰åœ¨ç¬¬"<<curLineNo<<"è¡Œ"<<endl;
         return 1;
     }
     else return 0;
 
 }
-//Ìæ»»µ±Ç°ÐÐ»òÕßËùÓÐÖ¸¶¨ÐÐµÄÖ¸¶¨ÎÄ±¾´®
+//æ›¿æ¢å½“å‰è¡Œæˆ–è€…æ‰€æœ‰æŒ‡å®šè¡Œçš„æŒ‡å®šæ–‡æœ¬ä¸²
 void editor::ChangeLine(){
-    //ÓÃ»§ÊäÈëÖ¸¶¨ÎÄ±¾´®£¬ÔÚµ±Ç°ÐÐ»òÕßËùÓÐÐÐÖÐÓÃÊäÈëµÄÐÂÎÄ±¾´®Ìæ»»Ö¸¶¨ÎÄ±¾´®
-    char answer;//ÓÃ»§»Ø´ð×Ö·û
-    bool initialResponse;//³õÊ¼»Ø´ð
-    //Ñ­»·Ö±µ½ÓÃ»§ÊäÈëºÏÀí×Ö·û
+    //ç”¨æˆ·è¾“å…¥æŒ‡å®šæ–‡æœ¬ä¸²ï¼Œåœ¨å½“å‰è¡Œæˆ–è€…æ‰€æœ‰è¡Œä¸­ç”¨è¾“å…¥çš„æ–°æ–‡æœ¬ä¸²æ›¿æ¢æŒ‡å®šæ–‡æœ¬ä¸²
+    char answer;//ç”¨æˆ·å›žç­”å­—ç¬¦
+    bool initialResponse;//åˆå§‹å›žç­”
+    //å¾ªçŽ¯ç›´åˆ°ç”¨æˆ·è¾“å…¥åˆç†å­—ç¬¦
     do{
         if(initialResponse){
-            //³õÊ¼»Ø´ð
-            cout<<"Ìæ»»µ±Ç°ÐÐ(c) »òÕß Ìæ»»ËùÓÐÐÐ(a):";
+            //åˆå§‹å›žç­”
+            cout<<"æ›¿æ¢å½“å‰è¡Œ(c) æˆ–è€… æ›¿æ¢æ‰€æœ‰è¡Œ(a):";
         }
         else{
-            //·Ç³õÊ¼»Ø´ð
-            cout<<"ÇëÊäÈë c or a:";
+            //éžåˆå§‹å›žç­”
+            cout<<"è¯·è¾“å…¥ c or a:";
         }
 
         cin>>answer;
-        while(cin.get()!='\n');//ºöÂÔÓÃ»§ÊäÈëµÄÆäËû×Ö·û
+        while(cin.get()!='\n');//å¿½ç•¥ç”¨æˆ·è¾“å…¥çš„å…¶ä»–å­—ç¬¦
         if(answer>='A'&&answer<='Z'){
             answer+=32;
-        }//´óÐ´×ª»»
+        }//å¤§å†™è½¬æ¢
         initialResponse=false;
     }while(answer!='c'&&answer!='a');
-    cout<<"ÇëÊäÈëÒª±»Ìæ»»µÄ×Ö·û´®:";
+    cout<<"è¯·è¾“å…¥è¦è¢«æ›¿æ¢çš„å­—ç¬¦ä¸²:";
     string strOld;
-    getline(cin,strOld);//ÊäÈëÒªÌæ»»µÄ×Ö·û´®
-    cout<<"ÇëÊäÈëÐÂ×Ö·û´®:";
+    getline(cin,strOld);//è¾“å…¥è¦æ›¿æ¢çš„å­—ç¬¦ä¸²
+    cout<<"è¯·è¾“å…¥æ–°å­—ç¬¦ä¸²:";
     string strNew;
     getline(cin,strNew);
 
     for(int row=1;row<textBuffer.Length();row++){
         if(answer=='c'&&row!=curLineNo){
-            //Ö»Ìæ»»µ±Ç°ÐÐ
-            continue;//¿ªÊ¼ÏÂÒ»´ÎÑ­»·
+            //åªæ›¿æ¢å½“å‰è¡Œ
+            continue;//å¼€å§‹ä¸‹ä¸€æ¬¡å¾ªçŽ¯
         }
         string strRow;//
-        strRow=textBuffer.GetPostionElem(row);//È¡³öµ±Ç°ÐÐ
+        strRow=textBuffer.GetPostionElem(row);//å–å‡ºå½“å‰è¡Œ
         if(strRow.find(strOld)!=strRow.npos){
-            //Æ¥Åä³É¹¦
+            //åŒ¹é…æˆåŠŸ
             string Newline;
-            //Newline»ñµÃÆ¥Åä´®Ö®Ç°µÄÈ«²¿×Ö·û
+            //NewlineèŽ·å¾—åŒ¹é…ä¸²ä¹‹å‰çš„å…¨éƒ¨å­—ç¬¦
             Newline=strRow.substr(0,strRow.find(strOld)-1);
             Newline.append(strNew);
-            //Newline»îµÃÌæ»»Ö®ºóµÄËùÓÐ×Ö·û
+            //Newlineæ´»å¾—æ›¿æ¢ä¹‹åŽçš„æ‰€æœ‰å­—ç¬¦
             Newline.append(strRow.substr(strRow.find(strOld)+strOld.length()-1));
             textBuffer.SetElem(row,Newline);
         }
     }
 }
-//¶ÁÈëÎÄ±¾ÎÄ¼þ
+//è¯»å…¥æ–‡æœ¬æ–‡ä»¶
 void editor::ReadFile(){
-    cout<<"ÇëÊäÈë¶ÁÈëÎÄ±¾Ãû³Æ:"<<endl;
+    cout<<"è¯·è¾“å…¥è¯»å…¥æ–‡æœ¬åç§°:"<<endl;
     char *in_file=new char[128];
     cin>>in_file;
     ifstream intofile;
     intofile.open(in_file,ios::in);
     if(!intofile){
-        //Èç¹û´ò¿ªÊ§°Ü
+        //å¦‚æžœæ‰“å¼€å¤±è´¥
         return;
     }
     string str1;
     textBuffer.Clear();
-    curLineNo=0;
+    curLineNo=1;
     while(getline(intofile,str1)){
         textBuffer.InsertElem(str1,curLineNo++);
         cout<<curLineNo<<":"<<str1<<endl;
     }
+    intofile.close();
 }
-//Ð´ÈëÎÄ±¾ÎÄ¼þ
+//å†™å…¥æ–‡æœ¬æ–‡ä»¶
 void editor::WriteFile(){
-    cout<<"ÇëÊäÈëÒªÐ´ÈëµÄÎÄ¼þÃû:"<<endl;
+    cout<<"è¯·è¾“å…¥è¦å†™å…¥çš„æ–‡ä»¶å:"<<endl;
     char *out_file=new char[128];
     cin>>out_file;
     ofstream outtofile;
@@ -144,33 +145,34 @@ void editor::WriteFile(){
         str1=textBuffer.GetPostionElem(num++);
         outtofile<<str1<<endl;
     }
+    outtofile.close();
 }
-//²éÕÒ´®
+//æŸ¥æ‰¾ä¸²
 void editor::FindString(){
-    //´Óµ±Ç°ÐÐ»òÕßµÚÒ»ÐÐ¿ªÊ¼²éÕÒ
+    //ä»Žå½“å‰è¡Œæˆ–è€…ç¬¬ä¸€è¡Œå¼€å§‹æŸ¥æ‰¾
     char answer;
     bool initialresponse=true;
     do{
         if(initialresponse){
-            //³õÊ¼»Ø´ð
-            cout<<"´ÓµÚÒ»ÐÐ¿ªÊ¼(first) or ´Óµ±Ç°ÐÐ¿ªÊ¼(current):";
+            //åˆå§‹å›žç­”
+            cout<<"ä»Žç¬¬ä¸€è¡Œå¼€å§‹(first) or ä»Žå½“å‰è¡Œå¼€å§‹(current):";
         }
         else{
-            //·Ç³õÊ¼»Ø´ð
-            cout<<"ÇëÊäÈë f or c :";
+            //éžåˆå§‹å›žç­”
+            cout<<"è¯·è¾“å…¥ f or c :";
         }
         cin>>answer;
-        while(cin.get()!='\n');//ºöÂÔºóÃæ¶àÓàµÄ×Ö·û
+        while(cin.get()!='\n');//å¿½ç•¥åŽé¢å¤šä½™çš„å­—ç¬¦
         if(answer>='A'&&answer<='Z'){
             answer+=32;
-        }//´óÐ´×ª»»
+        }//å¤§å†™è½¬æ¢
         initialresponse=false;
     }while(answer!='f'&&answer!='c');
-    if(answer=='f') curLineNo=1;//ÊäÈëfÊ±´ÓµÚÒ»ÐÐ¿ªÊ¼
-    bool flag=false;//ÓÃÓÚ±ê¼ÇÊÇ·ñ²éÕÒµ½Ö¸¶¨´®
-    cout<<"ÇëÊäÈëÐèÒª²éÕÒµÄ×Ö·û´®:";
+    if(answer=='f') curLineNo=1;//è¾“å…¥fæ—¶ä»Žç¬¬ä¸€è¡Œå¼€å§‹
+    bool flag=false;//ç”¨äºŽæ ‡è®°æ˜¯å¦æŸ¥æ‰¾åˆ°æŒ‡å®šä¸²
+    cout<<"è¯·è¾“å…¥éœ€è¦æŸ¥æ‰¾çš„å­—ç¬¦ä¸²:";
     string strSearch;
-    getline(cin,strSearch);//»ñÈ¡ËÑË÷µÄ×Ö·û´®
+    getline(cin,strSearch);//èŽ·å–æœç´¢çš„å­—ç¬¦ä¸²
     string strRow=textBuffer.GetPostionElem(curLineNo);
     while(curLineNo<=textBuffer.Length()){
         if(strRow.find(strSearch)!=strRow.npos){
@@ -179,11 +181,11 @@ void editor::FindString(){
         }
         else{
             curLineNo++;
-            strRow=textBuffer.GetPostionElem(curLineNo);//ÔÙÈ¡³öÏÂÒ»ÐÐ
+            strRow=textBuffer.GetPostionElem(curLineNo);//å†å–å‡ºä¸‹ä¸€è¡Œ
         }
     }
     if(flag){
-        //²éÕÒ³É¹¦
+        //æŸ¥æ‰¾æˆåŠŸ
         cout<<strRow<<endl;
         for(int i=0;i<strRow.find(strSearch);i++){
             cout<<" ";
@@ -193,125 +195,125 @@ void editor::FindString(){
         }
     }
     else{
-        //²éÕÒÊ§°Ü
-        cout<<"²éÑ¯Ê§°Ü!";
+        //æŸ¥æ‰¾å¤±è´¥
+        cout<<"æŸ¥è¯¢å¤±è´¥!";
     }
     cout<<endl;
 } 
 
 void editor::Run(){
-    char command;//ÓÃ»§ÃüÁî
+    char command;//ç”¨æˆ·å‘½ä»¤
     do{
-        string strTmp;//ÁÙÊ±´®
-        string curLine;//µ±Ç°ÐÐ
+        string strTmp;//ä¸´æ—¶ä¸²
+        string curLine;//å½“å‰è¡Œ
         if(curLineNo!=0){
-            //´æÔÚµ±Ç°ÐÐ
-            curLine=textBuffer.GetPostionElem(curLineNo);//È¥È¡³öµ±Ç°ÐÐ
-            cout<<curLineNo<<":"<<curLine<<endl<<"?";//ÏÔÊ¾µ±Ç°ÐÐ¼°?
+            //å­˜åœ¨å½“å‰è¡Œ
+            curLine=textBuffer.GetPostionElem(curLineNo);//åŽ»å–å‡ºå½“å‰è¡Œ
+            cout<<curLineNo<<":"<<curLine<<endl<<"è¾“å…¥æŒ‡ä»¤:";//æ˜¾ç¤ºå½“å‰è¡ŒåŠ?
         }
         else{
-            //²»´æÔÚµ±Ç°ÐÐ
-            cout<<"ÎÄ¼þ»º´æ¿Õ!"<<endl<<"?";
+            //ä¸å­˜åœ¨å½“å‰è¡Œ
+            cout<<"æ–‡ä»¶ç¼“å­˜ç©º!"<<endl<<"è¾“å…¥æŒ‡ä»¤:";
         }
         cin>>command;
         if(command>='A'&&command<='Z'){
             command+=32;
-        }//´óÐ´×ª»»
-        while(cin.get()!='\n');//ºöÂÔÆäËû×Ö·û
+        }//å¤§å†™è½¬æ¢
+        while(cin.get()!='\n');//å¿½ç•¥å…¶ä»–å­—ç¬¦
         if(command!='u'&&command!='h'&&command!='?'&&command!='v'){
-            //´æ´¢³·ÏúÐÅÏ¢
-            textUndoBuffer=textBuffer;//³·ÏúµÄ»º´æ(ÕûÌå)
-            curUndoLineNo=curLineNo;//³·ÏúµÄÐÐºÅ
+            //å­˜å‚¨æ’¤é”€ä¿¡æ¯
+            textUndoBuffer=textBuffer;//æ’¤é”€çš„ç¼“å­˜(æ•´ä½“)
+            curUndoLineNo=curLineNo;//æ’¤é”€çš„è¡Œå·
         }
-        //ÔËÐÐ²Ù×÷ÃüÁî
+        //è¿è¡Œæ“ä½œå‘½ä»¤
         switch(command){
-            case 'b'://×ªµ½µÚÒ»ÐÐb(begin)
+            case 'b'://è½¬åˆ°ç¬¬ä¸€è¡Œb(begin)
                 if(textBuffer.Isempty()){
-                    //ÎÄ±¾»º´æ¿Õ
-                    cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ£¡"<<endl;
+                    //æ–‡æœ¬ç¼“å­˜ç©º
+                    cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©ºï¼"<<endl;
                 }
                 else{
-                    //·Ç¿Õ×ªµ½µÚÒ»ÐÐ
+                    //éžç©ºè½¬åˆ°ç¬¬ä¸€è¡Œ
                     curLine=1;
                 }
                 break;
 
-            case 'c'://Ìæ»»µ±Ç°ÐÐ»òÕßËùÓÐÐÐ
+            case 'c'://æ›¿æ¢å½“å‰è¡Œæˆ–è€…æ‰€æœ‰è¡Œ
                 if(textBuffer.Isempty()){
-                    cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ£¡"<<endl;
+                    cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©ºï¼"<<endl;
                 }
                 else{
-                    //Ìæ»»
+                    //æ›¿æ¢
                     ChangeLine();
                 }
                 break;
             
-            case 'd'://É¾³ýµ±Ç°ÐÐ(delete)
+            case 'd'://åˆ é™¤å½“å‰è¡Œ(delete)
                 if(textBuffer.DeleteElem(curLineNo,strTmp)==0){
-                    cout<<"É¾³ýÊ§°Ü£¡"<<endl;
+                    cout<<"åˆ é™¤å¤±è´¥ï¼"<<endl;
                 }
                 break;
             
-            case 'e'://×ªµ½×îºóÒ»ÐÐe(end)
+            case 'e'://è½¬åˆ°æœ€åŽä¸€è¡Œe(end)
                 if(textBuffer.Isempty()){
-                    cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ£¡"<<endl;
+                    cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©ºï¼"<<endl;
                 }
                 else{
                     curLineNo=textBuffer.Length();
                 }
                 break;
             
-            case 'f'://´Óµ±Ç°ÐÐ»òÕßµÚÒ»ÐÐ²éÕÒÖ¸¶¨ÎÄ±¾
+            case 'f'://ä»Žå½“å‰è¡Œæˆ–è€…ç¬¬ä¸€è¡ŒæŸ¥æ‰¾æŒ‡å®šæ–‡æœ¬
                 if(textBuffer.Isempty()){
-                    cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ£¡"<<endl;
+                    cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©ºï¼"<<endl;
                 }
                 else{
-                    //´Óµ±Ç°ÐÐ»òÕß¿ªÊ¼²éÕÒ
+                    //ä»Žå½“å‰è¡Œæˆ–è€…å¼€å§‹æŸ¥æ‰¾
                     FindString();
                 }
                 break;
 
-            case 'g'://×ªµ½Ö¸¶¨ÐÐg(o)
+            case 'g'://è½¬åˆ°æŒ‡å®šè¡Œg(o)
                 if(GotoLine()==0){
-                    //Ìø×ªÊ§°Ü
-                    cout<<"Ìø×ªÊ§°Ü£¬Ã»ÓÐÖ¸¶¨ÐÐ"<<endl;
+                    //è·³è½¬å¤±è´¥
+                    cout<<"è·³è½¬å¤±è´¥ï¼Œæ²¡æœ‰æŒ‡å®šè¡Œ"<<endl;
                 }
                 break;
 
             case '?':
             case 'h':
-                cout<<"ÓÐÐ§ÃüÁî£ºb(begin) c(change) d(del) e(end) "<<endl;
+                cout<<"æœ‰æ•ˆå‘½ä»¤ï¼šb(begin) c(change) d(del) e(end) "<<endl;
                 cout<<"f(find) g(go) h(help) i(insert) n(next) p(prior) "<<endl;
                 cout<<"q(quit) r(read) u(undo) v(view) w(write) "<<endl;
                 break;
             
             case 'i':
                 if(InsertLine()==0){
-                    //²åÈëÊ§°Ü
-                    cout<<"´íÎó£º²åÈëÐÐÊ§°Ü"<<endl;
+                    //æ’å…¥å¤±è´¥
+                    cout<<"é”™è¯¯ï¼šæ’å…¥è¡Œå¤±è´¥"<<endl;
                 }
                 break;
             
-            case 'n'://×ªµ½ÏÂÒ»ÐÐ
+            case 'n'://è½¬åˆ°ä¸‹ä¸€è¡Œ
                 if(NextLine()==0){
-                    cout<<"¾¯¸æ£ºµ±Ç°ÒÑÊÇ×îºóÒ»ÐÐ"<<endl;
+                    cout<<"è­¦å‘Šï¼šå½“å‰å·²æ˜¯æœ€åŽä¸€è¡Œ"<<endl;
                 }
                 break;
 
-            case 'p'://×ªµ½Ç°Ò»ÐÐp(previous)
+            case 'p'://è½¬åˆ°å‰ä¸€è¡Œp(previous)
                 if(PreviousLine()==0){
-                    //Ìø×ªÊ§°Ü
-                    cout<<"¾¯¸æ£ºµ±Ç°ÒÑÊÇµÚÒ»ÐÐ"<<endl;
+                    //è·³è½¬å¤±è´¥
+                    cout<<"è­¦å‘Šï¼šå½“å‰å·²æ˜¯ç¬¬ä¸€è¡Œ"<<endl;
                 }
                 break;
 
             case 'q':break;
 
-            case 'r'://¶ÁÎÄ±¾ÎÄ¼þ
+            case 'r'://è¯»æ–‡æœ¬æ–‡ä»¶
                 ReadFile();
                 break;
             
-            case 'u'://³·ÏúÉÏ´Î²Ù×÷
+            case 'u'://æ’¤é”€ä¸Šæ¬¡æ“ä½œ
                 {
                 linklist<string> tmpBuffer;
                 tmpBuffer=textBuffer;
@@ -323,23 +325,47 @@ void editor::Run(){
                 break;
                 }
             
-            case 'v'://ÏÔÊ¾ÎÄ±¾
+            case 'v'://æ˜¾ç¤ºæ–‡æœ¬
                 textBuffer.Traverse(show);
                 break;
             
-            case 'w'://Ð´Èëµ½ÎÄ¼þ
+            case 'w'://å†™å…¥åˆ°æ–‡ä»¶
                 if(textBuffer.Isempty()){
-                    cout<<"¾¯¸æ£ºÎÄ±¾»º´æ¿Õ"<<endl;
+                    cout<<"è­¦å‘Šï¼šæ–‡æœ¬ç¼“å­˜ç©º"<<endl;
                 }
                 else{
-                    //Ð´»º´æÇøÎÄ±¾µ½Êä³öÎÄ¼þ
+                    //å†™ç¼“å­˜åŒºæ–‡æœ¬åˆ°è¾“å‡ºæ–‡ä»¶
                     WriteFile();
                 }
                 break;
-            
             default: 
-                cout<<"ÊäÈëh»òÕß?À´»ñÈ¡°ïÖú\n";
+                cout<<"è¾“å…¥hæˆ–è€…?æ¥èŽ·å–å¸®åŠ©\n";
         }
     }while(command!='q');
 
+}
+
+editor::editor(char inFNmae[],char outFName[]){
+    //è£…è½½
+    inFile.open(inFNmae,ios::in);
+    if(!inFile){
+        //å¦‚æžœæ‰“å¼€å¤±è´¥
+        return;
+    }
+    string str1;
+    textBuffer.Clear();
+    curLineNo=1;
+    while(getline(inFile,str1)){
+        textBuffer.InsertElem(str1,curLineNo++);
+    }
+    curLineNo=1;
+    inFile.close();
+    outFile.open(outFName,ios::out);
+    int num=1;
+    string str0;
+    while(num<=textBuffer.Length()){
+        str0=textBuffer.GetPostionElem(num++);
+        outFile<<str0<<endl;
+    }
+    outFile.close();
 }

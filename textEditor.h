@@ -26,7 +26,7 @@ private:
     void WriteFile();//写入文本文件
     void FindString();//查找串
 public:
-    editor(char inFName[],char outfName[]);//构造函数
+    editor(char inFName[],char outFName[]);//构造函数
     void Run();//运行文本编辑器
 };
 

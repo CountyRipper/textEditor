@@ -36,20 +36,15 @@ void linklist<Type>::Traverse(void(*visit)(const Type&)){
 
 template<class Type>
 Type linklist<Type>::GetPostionElem(int position){
-    Node<Type>* cur=head->next; 
-    if(cur!=NULL){
-        for(int i=0;i<position;i++){
-            cur=cur->next;
-        }
-        return cur->data;
-    }
-    else return NULL;
+    Node<Type>* get;
+    get=GetPositionPtr(position);
+    return get->data;
 }
 
 //插入到当前序号的下一个，如果是0就在头节点后面直接插入
 template<class Type>
 int linklist<Type>::InsertElem(const Type &Elem,int position){
-    if(position<0||position>Length()+1){
+    if(position<1||position>Length()+1){
         return 0;
     }
     else{
@@ -121,6 +116,15 @@ linklist<Type>::~linklist(){
 
 template<class Type>
 linklist<Type>::linklist(linklist<Type>&copy){
-    head=copy.head;
+    linklist<Type> tmplist;
+    tmplist.count=copy.count;
+    for(int i=1;i<=count;i++){
+        tmplist.InsertElem(copy.GetPostionElem(i),i);
+    }
+    tmplist.curposition=copy.curposition;
 }
+/*
+template<class Type>
+linklist<Type> operator=(const linklist<Type>&copy){
+}*/
 
