@@ -1,8 +1,10 @@
 {
     "files.associations": {
+        "*.docx": "plaintext",
         "*.cjson": "jsonc",
         "*.wxss": "css",
         "*.wxs": "javascript",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

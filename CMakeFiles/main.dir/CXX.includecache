@@ -6,33 +6,33 @@
 
 #IncludeRegexTransform: 
 
-G:/DS_texteditor/linkList.cpp
+D:/DS_texteditor/linkList.cpp
 linkList.h
-G:/DS_texteditor/linkList.h
+D:/DS_texteditor/linkList.h
 
-G:/DS_texteditor/linkList.h
+D:/DS_texteditor/linkList.h
 stddef.h
 -
 
-G:/DS_texteditor/main.cpp
+D:/DS_texteditor/main.cpp
 textEditor.h
-G:/DS_texteditor/textEditor.h
+D:/DS_texteditor/textEditor.h
 textEditor.cpp
-G:/DS_texteditor/textEditor.cpp
+D:/DS_texteditor/textEditor.cpp
 iostream
 -
-string
+string.h
 -
 
-G:/DS_texteditor/textEditor.cpp
+D:/DS_texteditor/textEditor.cpp
 textEditor.h
-G:/DS_texteditor/textEditor.h
+D:/DS_texteditor/textEditor.h
 
-G:/DS_texteditor/textEditor.h
+D:/DS_texteditor/textEditor.h
 linkList.h
-G:/DS_texteditor/linkList.h
+D:/DS_texteditor/linkList.h
 linkList.cpp
-G:/DS_texteditor/linkList.cpp
+D:/DS_texteditor/linkList.cpp
 string
 -
 iostream
