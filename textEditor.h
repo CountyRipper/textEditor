@@ -1,6 +1,7 @@
 #ifndef _TEXTEDITOR_H_
 #define _TEXTEDITOR_H_
 #include "linkList.h"
+#include "linkList.cpp"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -18,17 +19,15 @@ private:
     //辅助函数
     int NextLine();//切换到下一行
     int PreviousLine();//转到前一行
-    int GotoLine(int linenum);//转到指定行
-    int InsertLine(string tmpline);//插入一行
+    int GotoLine();//转到指定行
+    int InsertLine();//插入一行
     void ChangeLine();//替换当前行或者所有指定行的指定文本串
     void ReadFile();//读入文本文件
     void WriteFile();//写入文本文件
     void FindString();//查找串
-    
 public:
     editor(char inFName[],char outfName[]);//构造函数
     void Run();//运行文本编辑器
 };
-
 
 #endif

@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+G:/DS_texteditor/linkList.cpp
+linkList.h
+G:/DS_texteditor/linkList.h
+
+G:/DS_texteditor/linkList.h
+stddef.h
+-
+
+G:/DS_texteditor/main.cpp
+textEditor.h
+G:/DS_texteditor/textEditor.h
+textEditor.cpp
+G:/DS_texteditor/textEditor.cpp
+iostream
+-
+string
+-
+
+G:/DS_texteditor/textEditor.cpp
+textEditor.h
+G:/DS_texteditor/textEditor.h
+
+G:/DS_texteditor/textEditor.h
+linkList.h
+G:/DS_texteditor/linkList.h
+linkList.cpp
+G:/DS_texteditor/linkList.cpp
+string
+-
+iostream
+-
+fstream
+-
+

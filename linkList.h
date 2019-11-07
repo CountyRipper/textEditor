@@ -69,7 +69,4 @@ class linklist{
         }        
 };
 
-
-
-
 #endif

@@ -21,7 +21,7 @@ template<class Type>
 void linklist<Type>::Clear(){
     while(head->next!=head){
         Type a1;
-        DeleteElem(count,a1);//如果头结点next指针不为NULL，就继续删除
+        DeleteElem(count,a1);//如果头结点next指针不为head，就继续删除
     }
 }
 
@@ -36,7 +36,7 @@ void linklist<Type>::Traverse(void(*visit)(const Type&)){
 
 template<class Type>
 Type linklist<Type>::GetPostionElem(int position){
-    Node<Type>* cur=head->next;
+    Node<Type>* cur=head->next; 
     if(cur!=NULL){
         for(int i=0;i<position;i++){
             cur=cur->next;

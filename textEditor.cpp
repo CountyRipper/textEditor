@@ -1,5 +1,69 @@
 #include "textEditor.h"
 
+template<class Type>
+void show(const Type &elem){
+    cout<<elem;
+}
+
+//切换到下一行
+int editor::NextLine(){
+    if(textBuffer.Isempty()){
+        cout<<"警告：文本缓存空"<<endl;
+        return 0;
+    }
+    if(curLineNo<textBuffer.Length()){
+        curLineNo++;
+        cout<<"当前在第"<<curLineNo<<"行"<<endl;
+        return 1;
+    }
+    else return 0;
+}
+//转到前一行
+int editor::PreviousLine(){
+    if(textBuffer.Isempty()){
+        cout<<"警告：文本缓存空"<<endl;
+        return 0;
+    }
+    if(curLineNo>1){
+        curLineNo--;
+        cout<<"当前在第"<<curLineNo<<"行"<<endl;
+        return 1;
+    }
+    else return 0;
+}
+//转到指定行
+int editor::GotoLine(){
+    int gotonum;
+    if(textBuffer.Isempty()) return 0;
+    cout<<"请输入需要跳转的行数"<<endl;
+    cin>>gotonum;
+    if(gotonum>0&&gotonum<=textBuffer.Length()){
+        curLineNo=gotonum;
+        cout<<"当前在第"<<curLineNo<<"行"<<endl;
+        return 1;
+    }
+    else return 0;
+    
+}
+//插入一行
+int editor::InsertLine(){
+    cout<<"当前共有"<<textBuffer.Length()<<"行"<<endl;
+    cout<<"请输入插入到第几行后面:"<<endl;
+    int row;
+    cin>>row;
+    if(row>=0&&row<=textBuffer.Length()){
+        cout<<"请输入插入行的字符串:"<<endl;
+        string instr;
+        getline(cin,instr);
+        textBuffer.InsertElem(instr,row+1);
+        curLineNo=row+1;
+        cout<<"插入成功"<<"当前在第"<<curLineNo<<"行"<<endl;
+        return 1;
+    }
+    else return 0;
+
+}
+//替换当前行或者所有指定行的指定文本串
 void editor::ChangeLine(){
     //用户输入指定文本串，在当前行或者所有行中用输入的新文本串替换指定文本串
     char answer;//用户回答字符
@@ -48,7 +112,40 @@ void editor::ChangeLine(){
         }
     }
 }
-
+//读入文本文件
+void editor::ReadFile(){
+    cout<<"请输入读入文本名称:"<<endl;
+    char *in_file=new char[128];
+    cin>>in_file;
+    ifstream intofile;
+    intofile.open(in_file,ios::in);
+    if(!intofile){
+        //如果打开失败
+        return;
+    }
+    string str1;
+    textBuffer.Clear();
+    curLineNo=0;
+    while(getline(intofile,str1)){
+        textBuffer.InsertElem(str1,curLineNo++);
+        cout<<curLineNo<<":"<<str1<<endl;
+    }
+}
+//写入文本文件
+void editor::WriteFile(){
+    cout<<"请输入要写入的文件名:"<<endl;
+    char *out_file=new char[128];
+    cin>>out_file;
+    ofstream outtofile;
+    outtofile.open(out_file,ios::out);
+    int num=1;
+    string str1;
+    while(num<=textBuffer.Length()){
+        str1=textBuffer.GetPostionElem(num++);
+        outtofile<<str1<<endl;
+    }
+}
+//查找串
 void editor::FindString(){
     //从当前行或者第一行开始查找
     char answer;
@@ -160,9 +257,89 @@ void editor::Run(){
                     cout<<"警告：文本缓存空！"<<endl;
                 }
                 else{
-                    
+                    curLineNo=textBuffer.Length();
                 }
+                break;
+            
+            case 'f'://从当前行或者第一行查找指定文本
+                if(textBuffer.Isempty()){
+                    cout<<"警告：文本缓存空！"<<endl;
+                }
+                else{
+                    //从当前行或者开始查找
+                    FindString();
+                }
+                break;
+
+            case 'g'://转到指定行g(o)
+                if(GotoLine()==0){
+                    //跳转失败
+                    cout<<"跳转失败，没有指定行"<<endl;
+                }
+                break;
+
+            case '?':
+            case 'h':
+                cout<<"有效命令：b(begin) c(change) d(del) e(end) "<<endl;
+                cout<<"f(find) g(go) h(help) i(insert) n(next) p(prior) "<<endl;
+                cout<<"q(quit) r(read) u(undo) v(view) w(write) "<<endl;
+                break;
+            
+            case 'i':
+                if(InsertLine()==0){
+                    //插入失败
+                    cout<<"错误：插入行失败"<<endl;
+                }
+                break;
+            
+            case 'n'://转到下一行
+                if(NextLine()==0){
+                    cout<<"警告：当前已是最后一行"<<endl;
+                }
+                break;
+
+            case 'p'://转到前一行p(previous)
+                if(PreviousLine()==0){
+                    //跳转失败
+                    cout<<"警告：当前已是第一行"<<endl;
+                }
+                break;
+
+            case 'q':break;
+
+            case 'r'://读文本文件
+                ReadFile();
+                break;
+            
+            case 'u'://撤销上次操作
+                {
+                linklist<string> tmpBuffer;
+                tmpBuffer=textBuffer;
+                int tmpcurLineNo=curLineNo;
+                textBuffer=textUndoBuffer;
+                curLineNo=curUndoLineNo;
+                textUndoBuffer=tmpBuffer;
+                curUndoLineNo=tmpcurLineNo;
+                break;
+                }
+            
+            case 'v'://显示文本
+                textBuffer.Traverse(show);
+                break;
+            
+            case 'w'://写入到文件
+                if(textBuffer.Isempty()){
+                    cout<<"警告：文本缓存空"<<endl;
+                }
+                else{
+                    //写缓存区文本到输出文件
+                    WriteFile();
+                }
+                break;
+            
+            default: 
+                cout<<"输入h或者?来获取帮助\n";
         }
-    }
+    }while(command!='q');
 
 }

@@ -1,3 +1,7 @@
+#include "textEditor.h"
+#include "textEditor.cpp"
+
+
 #include <iostream>
 #include <string>
 int main(int, char**) {
