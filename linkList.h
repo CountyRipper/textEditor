@@ -44,11 +44,12 @@ class linklist{
             }
             else if(curposition>position){
                 //当前位置在查找位置之后
-                for(;curposition>position;curposition--){
-                    curPtr->back;
+                while(curposition>position){
+                    curPtr=curPtr->back;
+                    curposition--;
                 }
             }
-            curposition=position;
+            //curposition=position;
             //position=curposition
             return curPtr;
         }
@@ -66,16 +67,11 @@ class linklist{
         int SetElem(int position,const Type &Elem);//设置指定位置元素
         linklist(linklist<Type>&copy);//复制构造函数模板
         linklist<Type>& operator =(linklist<Type>&copy){
-            linklist<Type> tmplist1;
-            tmplist1.count=copy.count;
-            for(int i=1;i<=tmplist1.count;i++){
-                tmplist1.InsertElem(copy.GetPostionElem(i),i++);
+            
+            for(int i=1;i<=copy.count;i++){
+                this->InsertElem(copy.GetPostionElem(i),i);
             }
-            tmplist1.curposition=copy.curposition;
-            for(int i=1;i<=tmplist1.curposition;i++){
-                tmplist1.curPtr=tmplist1.curPtr->next;
-            }
-            return tmplist1;
+            
         }            
          //重载=
 };

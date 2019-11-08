@@ -53,9 +53,9 @@ int editor::InsertLine(){
     cin>>row;
     if(row>=0&&row<=textBuffer.Length()){
         cout<<"请输入插入行的字符串:"<<endl;
-        string instr;
-        getline(cin,instr);
-        textBuffer.InsertElem(instr,row+1);
+        string in_str;
+        cin>>in_str;
+        textBuffer.InsertElem(in_str,row+1);
         curLineNo=row+1;
         cout<<"插入成功"<<"当前在第"<<curLineNo<<"行"<<endl;
         return 1;
@@ -93,7 +93,7 @@ void editor::ChangeLine(){
     string strNew;
     getline(cin,strNew);
 
-    for(int row=1;row<textBuffer.Length();row++){
+    for(int row=1;row<=textBuffer.Length();row++){
         if(answer=='c'&&row!=curLineNo){
             //只替换当前行
             continue;//开始下一次循环
@@ -104,10 +104,12 @@ void editor::ChangeLine(){
             //匹配成功
             string Newline;
             //Newline获得匹配串之前的全部字符
-            Newline=strRow.substr(0,strRow.find(strOld)-1);
+            int num=strRow.find(strOld);
+            Newline=strRow.substr(0,strRow.find(strOld));
+            num=num+strOld.length();
             Newline.append(strNew);
-            //Newline活得替换之后的所有字符
-            Newline.append(strRow.substr(strRow.find(strOld)+strOld.length()-1));
+            //Newline获得替换之后的所有字符
+            Newline.append(strRow.substr(num));
             textBuffer.SetElem(row,Newline);
         }
     }
@@ -234,7 +236,7 @@ void editor::Run(){
                 }
                 else{
                     //非空转到第一行
-                    curLine=1;
+                    curLineNo=1;
                 }
                 break;
 

@@ -19,9 +19,9 @@ int linklist<Type>::Length(){
 
 template<class Type>
 void linklist<Type>::Clear(){
-    while(head->next!=head){
+    while(Length()>0){
         Type a1;
-        DeleteElem(count,a1);//如果头结点next指针不为head，就继续删除
+        DeleteElem(1,a1);//如果头结点next指针不为head，就继续删除
     }
 }
 
@@ -66,6 +66,7 @@ int linklist<Type>::DeleteElem(int position,Type &Elem){
     if(!Isempty()){
         if(position>0&&position<=Length()){
             Node<Type>* tmpPtr=GetPositionPtr(position-1);//去取出指向position的指针
+            tmpPtr=tmpPtr->next;
             tmpPtr->back->next=tmpPtr->next;//前一个指针的后继修改
             tmpPtr->next->back=tmpPtr->back;//后一个指针的前驱修改
             Elem=tmpPtr->data;//用Elem来返回删除的元素

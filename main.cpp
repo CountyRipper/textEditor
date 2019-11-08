@@ -18,9 +18,9 @@ int main(int, char**) {
     cout<<"N:当前行移动到下一行"<<endl;
     cout<<"P:当前行移动到上一行"<<endl;
     cout<<"B:当前行移动到开始位置"<<endl;
-    cout<<"功能表:"<<endl;
-    cout<<"功能表:"<<endl;
-    cout<<"功能表:"<<endl;
+    cout<<"E:当前行移动到结束位置，缓冲区最后一行"<<endl;
+    cout<<"G:当前行移动到缓冲区中用户指定的行"<<endl;
+    cout<<"V:查看缓冲区所有内容"<<endl;
     cout<<"输入文件名(默认:file_in.txt):"<<endl;
     char infilename[128];
     char c1;
@@ -43,4 +43,5 @@ int main(int, char**) {
     }
     editor E1(infilename,outfilename);
     E1.Run();
+    return 0;
 }

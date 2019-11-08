@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/DS_texteditor/linkList.cpp" "D:/DS_texteditor/CMakeFiles/main.dir/linkList.cpp.obj"
-  "D:/DS_texteditor/main.cpp" "D:/DS_texteditor/CMakeFiles/main.dir/main.cpp.obj"
+  "G:/DS_texteditor/linkList.cpp" "G:/DS_texteditor/CMakeFiles/main.dir/linkList.cpp.obj"
+  "G:/DS_texteditor/main.cpp" "G:/DS_texteditor/CMakeFiles/main.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
